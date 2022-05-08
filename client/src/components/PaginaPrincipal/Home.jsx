@@ -2,37 +2,51 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { filterByGenre, getGenre } from "../../actions/actions";
-import getVideogames from '../../actions/actions'
+import { filterByGenre, filterByRating, getCreated, getGenre, getRating, getVideoGames, orderAZ }  from "../Actions/actions";
+
 // import Card from "../components/Card";
 import AllCard from "../Cards/allCards";
+import Searchbar from "./Search";
+import s from "./Home.module.css";
+import Paginado from "./Pagin";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const allGames = useSelector((state) => state.videogame); // es lo mismo que hacer el map state to props aqui lo que hacemos
   const gen=useSelector((state)=>state.genres)
-  const [game, setGame]= useState({
-    description: "",
-    rating: "",
-    released: "",
-    platforms: "",
-    background_image: "",
-    name: "",
-    genres: [],
-  });
+  const [maymen,setMaymen]= useState(" ")
+  
+  
+  //////// paginado
+  
+  //es guardar en la constante allgames todos los stados que hay dentro del array videogames
+  //---Paginado---
+  const [order,setOrder]= useState(" ")
+   const [currentPage, setCurrentPage] = useState(1);
   
   // USEEFFECT
   useEffect(() => {
-    dispatch(getVideogames());
+    dispatch(getVideoGames());
+  }, [dispatch]);
+  
+  useEffect(() => {
+    dispatch(getRating());
   }, [dispatch]);
   
   useEffect(() => {
     dispatch(getGenre());
   }, [dispatch]);
+  
 
-  //////// paginado
-  const [currentPage, setCurrentPage] = useState(1);
+// const pagin = (pages) => {
+//   setCurrentPage(pages);
+// };
+useEffect(() => {
+  // esto reemplaza todo lo que hace el mapdispatch y mapstate
+  dispatch(getVideoGames());
+}, [dispatch]); // en los corchetes son excepcione que colocamos, ej para que funcione el dispatch tiene que haber el componente ej x
 
-  //////// FUNCIONES
+
   // funciones que me filtren el por genero
   function filtrosGen(e) {
     e.preventDefault();
@@ -40,49 +54,77 @@ export default function Home() {
     setCurrentPage(1);
   }
   
-  function handleGenres(e) {
-    e.preventDefault();
-    dispatch(getGenre());
+
+  function filtroRating(e){
+    e.preventDefault()
+    dispatch(filterByRating(e.target.value))
     setCurrentPage(1);
+    setOrder(e.target.value)
   }
 
   function handleClick(e) {
     e.preventDefault();
-    dispatch(getVideogames());
+    dispatch(getVideoGames());
     setCurrentPage(1);
   }
-
+  function handleCreated(e) {
+    e.preventDefault();
+    dispatch(getCreated(e.target.value));
+    setCurrentPage(1);
+    setMaymen(e.target.value);
+  
+  }
+  function handleOrder(e) {
+    e.preventDefault();
+    dispatch(orderAZ(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
   return (
     <div>
-      <h1>Home</h1>
+      <h1>Welcome to Videogames PI</h1>
       
 
       <div>
-        {/* boton para volver al home */}
-        <Link to="/form">Crear Juego</Link>
-        {/* boton para volver al home */}
+            {/* //////////// SearchBar */}
+            <div>
+          
+          <Searchbar/>
+            </div>
+            {/* //////// searchBar */}
         <h1>Videogames</h1>
+        {/* boton para crear */}
+        
         <button
+        className={s.button}
           onClick={(e) => {
             handleClick(e);
           }}
         >
           Volver a cargar
         </button>
+        <br/>
         {/* Terminado Boton recargar Home */}
+        <Link to="/created">Crear Juego</Link>
+        {/* boton para crear */}
         {/* traer info a la home */}
         <div>
-          <select>
+          <select  className={s.filtros} onChange={e=> handleOrder(e)}>
             <option value="all">todos</option>
             <option value="asc">Ascendente</option>
             <option value="desc">Descendente</option>
           </select>
-          <select>
+          <select  className={s.filtros} onChange={e=>handleCreated(e)}>
             <option value="all">Videojuegos</option>
-            <option value="asc">Existentes</option>
-            <option value="desc">creados</option>
+            <option value="api">Existentes</option>
+            <option value="created">creados</option>
           </select>
-          <select onChange={filtrosGen}>
+        <select  className={s.filtros} onChange={e=> filtroRating(e)}>
+            <option value="all">Ratings</option>
+            <option value="asc">Mejor Valorados</option>
+            <option value="desc">Menos Valorados</option>
+          </select>
+          <select  className={s.filtros} onChange={e=>filtrosGen(e)}>
           <option value="all">Generos</option>
               {gen &&
                 gen.map((e) => (
@@ -93,10 +135,16 @@ export default function Home() {
             </select>
           
         </div>
-        
+        <Paginado
+     
+        />
         {/* fin de funcion que trae info a la home */}
       </div>
-      <AllCard />
+     
+      <div className={s.contenedor}>
+
+      <AllCard/>
+      </div>
     </div>
   );
 }

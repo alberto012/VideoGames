@@ -35,7 +35,8 @@ module.exports = (sequelize) => {
     },
 
     background_image: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(2000),
+      allowNull: false,
     },
 
     createdVideoGame: {
