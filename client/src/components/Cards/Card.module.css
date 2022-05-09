@@ -1,0 +1,22 @@
+
+.prim{
+    border: 1px solid grey;
+    width: 300px;
+    padding: 50px;
+    min-height: 450px;
+    margin: 30px;
+    height: auto;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+    border-radius: 15px;
+    color:black;
+    font-family:'Bangers', cursive
+    
+}
+.prim:hover{
+    transform:scale(1.1);
+}
+.imagen{
+    border-radius: 20px;
+
+}

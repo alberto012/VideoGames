@@ -1,0 +1,66 @@
+.land {
+  
+  background-image: url("https://i.gifer.com/CvGT.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:100em;
+  padding-top: 10px ;
+  padding-bottom: 10em ;
+   
+  }
+  
+ 
+  
+  
+  .h1 {
+    font-family:'Bangers', cursive;
+    font-size: 100px;
+    text-shadow: 11px 4px 10px rgb(61, 63, 175);
+    color: white
+    
+  }
+  .buttons{
+	font-family:'Bangers', cursive 
+  }
+  .buttons {
+	  font-size: 20px;
+	  font-weight: 200;
+	  letter-spacing: 1px;
+	  padding: 5px 20px 5px;
+	  outline: 0;
+	  border: 1px solid rgb(255, 255, 255);
+	  cursor: pointer;
+	  position: relative;
+	  background-color: rgba(184, 221, 83, 0.801);
+	  
+  }
+  
+  .buttons:i {
+    opacity: 0;
+    font-size: px;
+    transition: 0.2s;
+    position: absolute;
+    right: 5px;
+    top: 21px;
+    transition: transform 1;
+  }
+  .buttons div {
+    transition: transform 0.8s;
+  }
+  
+  .buttons:hover div {
+    transform: translateX(-6px);
+  }
+  
+  .buttons::after {
+    content: "";
+    background-color: #66f2d5;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+  }
+  
+  

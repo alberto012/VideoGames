@@ -1,30 +1,19 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import img from "../Cards/meme.png"
+import React from "react";
+import { useSelector} from "react-redux";
 import s from "./Allcard.module.css"
 import { NavLink } from "react-router-dom";
 import Card from "./Card";
-import { getVideoGames } from "../Actions/actions";
 
-export default function AllCard() {
-  
-  //pidiendo a redux el estado de los videojuegos
+export default function AllCard({currentGame}) {
   const eGames = useSelector((state) => state.videogame);
-  
-  let expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi
-  var urlExp = new RegExp(expression);
-  let image = urlExp.test(eGames.background_image) === false || eGames.background_image === "" ? img : eGames.background_image;
-  const dispatch = useDispatch();
-  //UTILIZO EL DISPATCH PARA HACER EL PEDIDO A LA API
-  useEffect(() => {
-    dispatch(getVideoGames());
-    /////SI HAY CAMBIOS EN EL DISPACH VUELVE A RENDERIZAR LA PAGINA
-  }, [dispatch]);
+  let expression = 	
+  /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+  var image = expression.test(eGames.background_image) === false || eGames.background_image === "" ? "https://38.media.tumblr.com/87557f6cfdb8997d55435b26f6d16a5c/tumblr_naxk2obyGN1t3m3ico1_500.gif" : eGames.background_image;
 
   return (
     <>
       <div className={s.allcard}>
-        {eGames?.map((e) => {
+        {currentGame?.map((e) => {
           return (
             <div key={e.id}>
               <NavLink
@@ -34,12 +23,14 @@ export default function AllCard() {
               >
                 <div>
                   <Card
+                  currentGame={currentGame}
                   name={e.name}
-                  background_image={e.background_image}
-                  description={e.description}
-                  genres={e.genres?.map((e) => e.name + " ")}
-            released={e.released}
+                  background_image={e.background_image?e.background_image:image}
+                 
+                  genres={e.genres}
+            
                  rating= {e.rating}
+                 
                   />
                 </div>
               </NavLink>

@@ -7,6 +7,7 @@ import Details from './components/PaginaPrincipal/Details';
 import Create from './components/PaginaPrincipal/Create';
 import Landing from './components/Inicio/Landing';
 
+
 function App() {
   
     return (

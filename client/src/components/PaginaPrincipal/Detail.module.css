@@ -1,0 +1,133 @@
+.primero{backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+    font-family:'Bangers', cursive
+    
+}
+.imagen{
+    width: 400px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+.primer{
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+
+}
+.boxOne{
+   width:100%;
+   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+.boxtwo{
+    width:100%;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+.boxThree{
+    width:100%;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+.boxFinal{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.5em;
+    font-weight:lighter;
+    font-size: 17px;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+.primero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+  
+}
+.h2{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+    font-weight:lighter;
+    font-size:20px
+    
+}
+.h3{
+    font-size :20px;
+    font-weight:lighter;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+    
+}
+.button{
+    display: flex;
+    justify-content:center;
+    width:100%;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+.caka{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+/* Page styling -- Not needed to replicate button visuals. */
+.primero{
+  
+  background-image: url("https://images4.alphacoders.com/117/1177896.jpg");
+  padding-top: 10px ;
+  padding-bottom: 20px ;
+  transition: 0.5s;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+  
+  
+   
+  }
+.body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Roboto Mono", monospace;
+  cursor: pointer
+  
+}
+
+.back {
+  margin: 50px;
+  font-family: inherit;
+}
+/* End of Page styling */
+
+/* Simple button styling -- No animation */
+.back {
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 50px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.back::after {
+  content: "";
+  background-color: #fc4700;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+}
+/* End of Simple Button */

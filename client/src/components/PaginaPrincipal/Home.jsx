@@ -1,48 +1,45 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { filterByGenre, filterByRating, getCreated, getGenre, getRating, getVideoGames, orderAZ }  from "../Actions/actions";
-
-// import Card from "../components/Card";
+import { Link, NavLink } from "react-router-dom";
+import { filterByGenre, filterByRating, getCreated, getGenre,  getVideoGames, orderAZ }  from "../Actions/actions";
 import AllCard from "../Cards/allCards";
-import Searchbar from "./Search";
 import s from "./Home.module.css";
-import Paginado from "./Pagin";
+import Paginado from "./Paginado";
+import NavBar from "./NavBar";
+import Searchbar from "./Search";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allGames = useSelector((state) => state.videogame); // es lo mismo que hacer el map state to props aqui lo que hacemos
   const gen=useSelector((state)=>state.genres)
-  const [maymen,setMaymen]= useState(" ")
+  const [maymen,setMaymen]= useState("")
   
   
   //////// paginado
+  const [order,setOrder]= useState("")
+  const [currentPage, setCurrentPage] = useState(1);
+  const [gamePerPage, setGamePerPage]= useState(15)
+  const indexLG=currentPage * gamePerPage//15 juegos
+  const indexFG= indexLG-gamePerPage//trae al minimo
+  const currentGame=allGames.slice(indexFG,indexLG)
+  const pagination=(number)=>{
+    setCurrentPage(number);
+  }
   
   //es guardar en la constante allgames todos los stados que hay dentro del array videogames
   //---Paginado---
-  const [order,setOrder]= useState(" ")
-   const [currentPage, setCurrentPage] = useState(1);
+
   
   // USEEFFECT
-  useEffect(() => {
-    dispatch(getVideoGames());
-  }, [dispatch]);
+ 
   
-  useEffect(() => {
-    dispatch(getRating());
-  }, [dispatch]);
-  
+
   useEffect(() => {
     dispatch(getGenre());
   }, [dispatch]);
   
-
-// const pagin = (pages) => {
-//   setCurrentPage(pages);
-// };
 useEffect(() => {
-  // esto reemplaza todo lo que hace el mapdispatch y mapstate
   dispatch(getVideoGames());
 }, [dispatch]); // en los corchetes son excepcione que colocamos, ej para que funcione el dispatch tiene que haber el componente ej x
 
@@ -54,7 +51,6 @@ useEffect(() => {
     setCurrentPage(1);
   }
   
-
   function filtroRating(e){
     e.preventDefault()
     dispatch(filterByRating(e.target.value))
@@ -81,18 +77,19 @@ useEffect(() => {
     setOrder(e.target.value);
   }
   return (
-    <div>
-      <h1>Welcome to Videogames PI</h1>
+    <div className={s.homes}>
+      <NavBar/>
+      <h1 className={s.home}>Welcome to Videogames PI</h1>
       
 
       <div>
             {/* //////////// SearchBar */}
             <div>
-          
           <Searchbar/>
+          
             </div>
             {/* //////// searchBar */}
-        <h1>Videogames</h1>
+    
         {/* boton para crear */}
         
         <button
@@ -104,8 +101,10 @@ useEffect(() => {
           Volver a cargar
         </button>
         <br/>
-        {/* Terminado Boton recargar Home */}
-        <Link to="/created">Crear Juego</Link>
+       <div>
+       <NavLink to="/created"><button className={s.button}>Crear Juego</button></NavLink>
+       </div>
+        
         {/* boton para crear */}
         {/* traer info a la home */}
         <div>
@@ -133,17 +132,21 @@ useEffect(() => {
                   </option>
                 ))}
             </select>
-          
-        </div>
-        <Paginado
-     
+            <Paginado
+ gamePerPage={gamePerPage}
+ allGames={allGames.length}
+ pagination={pagination}
         />
+        </div>
+        
         {/* fin de funcion que trae info a la home */}
       </div>
      
       <div className={s.contenedor}>
 
-      <AllCard/>
+      <AllCard
+      currentGame={currentGame}
+      />
       </div>
     </div>
   );

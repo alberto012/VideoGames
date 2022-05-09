@@ -1,20 +1,34 @@
 import axios from "axios";
 
+// export function getVideoGames() {
+//   // aca sucede la conexion entre front y back
+//   return async function (dispatch) {
+//     var info = await axios.get(`http://localhost:3001/videogames`);
+//     return dispatch({
+//       type: "GET_VIDEOGAMES",
+//       payload: info.data, // aca te devuelve la respuesta con un data, a diferencia de promesas
+//     });
+//   };
+// }
 export function getVideoGames() {
-  // aca sucede la conexion entre front y back
   return async function (dispatch) {
-    var json = await axios.get(`http://localhost:3001/videogames`);
-    console.log("QUE INFO TRAE DE JSON:", json);
+    try {
+      const info = await axios.get("http://localhost:3001/videogames");
 
-    return dispatch({
-      type: "GET_VIDEOGAMES",
-      payload: json.data, // aca te devuelve la respuesta con un data, a diferencia de promesas
-    });
+      return dispatch({
+        type: "GET_VIDEOGAMES",
+        payload: info.data,
+        loading: false,
+      });
+    } catch (err) {
+      return err;
+    }
   };
 }
+
 export function getGenre() {
   return async function (dispatch) {
-    const allGenres = await axios.get(`http://localhost:3001/genres`);
+    const allGenres = await axios.get(`http://localhost:3001/genre`);
     return dispatch({
       type: "GET_GENRE",
       payload: allGenres.data,
@@ -28,15 +42,16 @@ export function filterByGenre(payload) {
   };
 }
 
-export function getRating() {
-  return async function (dispatch) {
-    const rating = await axios.get("http://localhost:3001/videogames");
-    return dispatch({
-      type: "GET_RATING",
-      payload: rating.data,
-    });
-  };
-}
+// export function getRating() {
+//   return async function (dispatch) {
+//     const rating = await axios.get("http://localhost:3001/videogames");
+//     return dispatch({
+//       type: "GET_RATING",
+//       payload: rating.data,
+//     });
+//   };
+// }
+
 
 export function getCreated(payload) {
   return {
@@ -58,7 +73,6 @@ export function getName(name) {
       var game = await axios.get(
         `http://localhost:3001/videogames?name=` + name
       );
-      console.log("QUE INFO TRAE DE NAME:", name);
 
       return dispatch({
         type: "GET_NAME",

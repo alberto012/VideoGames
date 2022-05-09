@@ -2,26 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {getVideoGames, createGame, getGenre, reset } from "../Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-
+import s from "./Create.module.css"
 function validar(estado){
   let error={};
   if (!estado.name){
     error.name=" No te olvides del nombre "}
-    else if(!error.background_image){
+      if(!error.background_image){
       error.background_image= "mmm... y la imagen?"
-    }else if(!error.description){
+    }  if(!error.description){
       error.description="te falto algo aca!"
-    }else if(!error.genres){
+    }  if(!error.genres){
       error.description="wey ya, te olvidas el genero"
-    }else if(!error.platforms){
+    }  if(!error.platforms){
       error.description="anda, elige uno"
-    }else if(!error.released){
+    }  if(!error.released){
       error.description="se que puedes leerme muchachx, llena el cuadro"
-    }else if(!error.rating){
+    }  if(!error.rating){
       error.description="bueno bueno, elige un numero valido"
     
-  }else if (error.rating<0|| error.rating>6){
+  }  if (error.rating<0|| error.rating>6){
     error.description="emmm nop, del 1 al 6"
+  }else{
+    error.submit= "ok"
   }
   return error
 }
@@ -36,7 +38,7 @@ export default function Create() {
   
   plataformas.map((e) => e.platforms?.map((e) => setArr.push(e)));
   let newData = [...new Set(setArr)];
-  console.log(newData);
+  
   const [estado, setEstado] = useState({
     name: "",
     background_image: "",
@@ -49,12 +51,18 @@ export default function Create() {
   const [err,SetErr]= useState({});
 
   ///eventos
-  function handleRESET(e) {
-    e.preventDefault();
-    dispatch(reset({}));
-    navigate("/home");
-  }
+ 
   function handleChange(e) {
+    if(e.target.name==="rating"){
+      setEstado({
+        ...estado,
+        [e.target.name]: Number(e.target.value),
+      });
+      SetErr(validar({
+        ...estado,
+        [e.target.name]: Number(e.target.value)
+      }))
+    }
     setEstado({
       ...estado,
       [e.target.name]: e.target.value,
@@ -98,17 +106,19 @@ export default function Create() {
   }, [dispatch]);
 
   return (
-    <div>
-      <Link to="/home">
-        <button>Volver</button>
-      </Link>
+   
+    <div className={s.Cont}>
+     
+     
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
+        <div className={s.general}>
+        <div className={s.form}>
           <label>Nombre: </label>
           <input
             type="text"
             value={estado.name}
             name="name"
+            className={s.body}
             onChange={(e) => handleChange(e)}
           
           />
@@ -118,14 +128,15 @@ export default function Create() {
             )
           }
         </div>
-        <div>
+        <div className={s.form}>
           <label>Fecha de Lanzamiento: </label>
           <input
             type="date"
             value={estado.released}
             name="released"
+            className={s.body}
             onChange={(e) => handleChange(e)}
-            required= "se te olvido algo"
+            // required= "se te olvido algo"
           />
           {
             err.released &&(
@@ -133,14 +144,15 @@ export default function Create() {
             )
           }
         </div>
-        <div>
+        <div className={s.form}>
           <label>Imagen: </label>
           <input
             type="text"
+            className={s.body}
             value={estado.background_image}
             name="background_image"
             onChange={(e) => handleChange(e)}
-            required= "se te olvido algo"
+            // required= "se te olvido algo"
           />
           {
             err.background_image &&(
@@ -148,12 +160,13 @@ export default function Create() {
             )
           }
         </div>
-        <div>
+        <div className={s.form}>
           <label>Descripcion: </label>
           <input
             type="text"
             value={estado.description}
             name="description"
+            className={s.body}
             onChange={(e) => handleChange(e)}
             required= "se te olvido algo"
           />
@@ -163,14 +176,15 @@ export default function Create() {
             )
           }
         </div>
-        <div>
+        <div className={s.form}>
           <label>Rating: </label>
           <input
-            type="text"
+            type="number"
             value={estado.rating}
             name="rating"
+            className={s.body}
             onChange={(e) => handleChange(e)}
-            required= "se te olvido algo"
+            // required= "se te olvido algo"
           />
           {
             err.rating &&(
@@ -178,8 +192,9 @@ export default function Create() {
             )
           }
         </div>
-        <label>Generos: </label>
-        <select onChange={(e) => handleSelect(e)}>
+        <div className={s.form}>
+        <label >Generos: </label>
+        <select className={s.body} onChange={(e) => handleSelect(e)}>
           {generos.map((gen) => (
             <option value={gen.name}>{gen.name}</option>
           ))}
@@ -189,12 +204,16 @@ export default function Create() {
             )
           }
         </select>
-        <ul>Generos Seleccionados: {estado.genres.map((e) => e + " ,")}</ul>
-        <div>
+        </div>
+        <div className={s.form}>
+        <label>Generos Seleccionados: </label>
+        <ul className={s.body}>{estado.genres.map((e) => e + " ,")}</ul>
+        </div>
+        <div className={s.form}>
           <label>Plataformas: </label>
-          <select onChange={(e) => handlePlatForms(e)}>
+          <select className={s.body} onChange={(e) => handlePlatForms(e)}>
             {newData?.map((e) => (
-              <option value={e}>{e}</option>
+              <option className={s.body} value={e}>{e}</option>
             ))}
             {
             err.platforms &&(
@@ -203,11 +222,21 @@ export default function Create() {
           }
           </select>
         </div>
-        <ul>
+        <div className={s.form}>
+        <ul className={s.body}>
           Plataformas Seleccionadas: {estado.platforms.map((e) => e + " ,")}
         </ul>
-        <button onClick={(e)=>handleRESET(e)}>Crealo!</button>
+        </div >
+        <div className={s.dis}>
+
+        <button className={s.buttons}onClick={(e)=>handleSubmit(e)}>Crealo!</button>
+      <Link to="/home">
+        <button className={s.buttons}>Volver</button>
+      </Link>
+      </div>
+        </div>
       </form>
-    </div>
+      </div>
+    
   );
 }

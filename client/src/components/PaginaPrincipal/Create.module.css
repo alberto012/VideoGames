@@ -1,0 +1,95 @@
+.body{
+  backdrop-filter: blur(10px);
+  font-size: 20px;
+-webkit-backdrop-filter: blur(100px);
+    font-family:'Bangers', cursive 
+}
+
+.Cont{
+  backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(100px);
+ font-size: 20px;
+    width: 100%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+    font-family:'Bangers', cursive 
+}
+.general{
+  font-size: 25px;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+.Cont{
+  font-size: 20px;
+  background-image: url("https://esports.eldesmarque.com/wp-content/uploads/2019/12/Orden-y-Caos-LoL-Soraka.jpg");
+  padding-top: 10px ;
+  padding-bottom: 20px ;
+  transition: 0.5s;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+ 
+}
+.form{
+    
+    width: 100%;
+    
+    align-content: space-around;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+}
+.buttons {
+    margin: 50px;
+    font-family: inherit;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+  }
+  /* End of Page styling */
+  .dis{
+    display: flex;
+    justify-content:center;
+    width:100%;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+  }
+  .top{
+    display: flex;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(100px);
+    width:100%;
+    margin: 0;
+  
+  justify-content:center;
+  flex-direction: 100vh
+  }
+  /* Simple button styling -- No animation */
+  .buttons {
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    padding: 13px 50px 13px;
+    outline: 0;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+  }
+  
+  .buttons::after {
+    content: "";
+    background-color: #fc4704;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px);
+  }

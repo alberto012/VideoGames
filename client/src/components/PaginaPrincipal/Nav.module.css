@@ -1,0 +1,33 @@
+.nav{
+    border:10px;
+    font-family:'Bangers', cursive
+}
+.btn{
+    
+    margin-left: 65em;
+}
+.btn{
+   
+    border-radius: 10px;
+  font-family: inherit;
+    font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 2px 10px 2px;
+  outline: 0;
+  border: 1px solid rgb(255, 252, 252);
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(204, 214, 116, 0.61);
+}
+.btn:after {
+    
+        content: "";
+        background-color: #e8ff83cc;
+        width: 100%;
+        z-index: -1;
+        position: absolute;
+        height: 100%;
+        top: 3px;
+    left: 5px;
+      }

@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       // unique: true,
     },
     rating: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false,
       // unique: true,
     },
@@ -35,7 +35,8 @@ module.exports = (sequelize) => {
     },
 
     background_image: {
-      type: DataTypes.STRING(2000),
+      type: DataTypes.STRING(2000),///tipo TEXT sirve tambien
+      
       allowNull: false,
     },
 

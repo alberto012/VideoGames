@@ -2,7 +2,6 @@ const initialState = {
   videogame: [],
   backUpGames: [],
   genres: [],
-  backUpGenres: [],
   detail: {},
 };
 
@@ -18,9 +17,8 @@ function ReducerReducer(state = initialState, action) {
       return {
         ...state,
         genres: action.payload,
-        backUpGenres: action.payload,
       };
-    case "POST_GAME":
+    case "CREATE_GAME":
       return {
         ...state,
       };
