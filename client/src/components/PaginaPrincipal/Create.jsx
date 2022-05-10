@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {getVideoGames, createGame, getGenre, reset } from "../Actions/actions";
+import {getVideoGames, createGame, getGenre, reset, getDeleted } from "../Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Create.module.css"
 function validar(estado){
@@ -51,7 +51,14 @@ export default function Create() {
   const [err,SetErr]= useState({});
 
   ///eventos
- 
+  const handleClikDelete = (event) => {
+    event.preventDefault();
+    setEstado({
+      ...estado,
+      platforms: estado.platforms.filter((d) => d.toLowerCase() !== event.target.value.toLowerCase())
+    });
+   
+  };
   function handleChange(e) {
     if(e.target.name==="rating"){
       setEstado({
@@ -88,6 +95,7 @@ export default function Create() {
     e.preventDefault();
     dispatch(createGame(estado));
     alert("Juego Añadido");
+    SetErr({})
     setEstado({
       name: "",
       background_image: "",
@@ -96,7 +104,9 @@ export default function Create() {
       platforms: [],
       genres: [],
       rating: "",
+      
     });
+    
   }
   useEffect(() => {
     dispatch(getGenre());
@@ -224,7 +234,7 @@ export default function Create() {
         </div>
         <div className={s.form}>
         <ul className={s.body}>
-          Plataformas Seleccionadas: {estado.platforms.map((e) => e + " ,")}
+          Plataformas Seleccionadas: {estado.platforms.map((e) =><div key={e}><button value={e} onClick={(event)=>handleClikDelete(event)} > X </button><li>{e}</li></div> )}
         </ul>
         </div >
         <div className={s.dis}>

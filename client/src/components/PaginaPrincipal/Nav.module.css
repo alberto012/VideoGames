@@ -18,12 +18,12 @@
   border: 1px solid rgb(255, 252, 252);
   cursor: pointer;
   position: relative;
-  background-color: rgba(204, 214, 116, 0.61);
+  background-color: rgba(255, 255, 255, 0.61);
 }
 .btn:after {
     
         content: "";
-        background-color: #e8ff83cc;
+        background-color: #ffffffcc;
         width: 100%;
         z-index: -1;
         position: absolute;

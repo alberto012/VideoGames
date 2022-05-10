@@ -3,6 +3,7 @@ const initialState = {
   backUpGames: [],
   genres: [],
   detail: {},
+  platforms:[],
 };
 
 function ReducerReducer(state = initialState, action) {
@@ -115,6 +116,7 @@ function ReducerReducer(state = initialState, action) {
           ...state,
           detail:action.payload,
         }
+       
     default:
       return state;
   }

@@ -174,7 +174,7 @@ router.get("/videogames/:id", async (req, res, next) => {
             released: game.data.released,
             rating: game.data.rating,
             description: game.data.description_raw,
-            image: game.data.background_image,
+            background_image: game.data.background_image,
             platforms: game.data.platforms,
           });
         
@@ -228,6 +228,7 @@ router.post("/videogame", async (req, res) => {
     console.log("Error en la ruta de Post");
   }
 });
+
 
 //todos los generos
 

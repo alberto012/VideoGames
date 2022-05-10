@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { cardDetails, reset } from "../Actions/actions";
 import s from "./Detail.module.css";
+import img from './tumblr_naxk2obyGN1t3m3ico1_500.gif'
 
 export default function Details(props) {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ export default function Details(props) {
   useEffect(() => {
     dispatch(cardDetails(id));
   }, [dispatch, id]);
+  let expression = 	
+  /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w  .-]*)*\/?$/;
   const videogames = useSelector((state) => state.detail);
   console.log(videogames);
   return (
@@ -27,34 +30,27 @@ export default function Details(props) {
         <div className={s.primer}>
           <div className={s.boxOne}>
 
-          Nombre:
+          
           <h1>
             {!videogames.createdVideoGame ? videogames.name : videogames.name}
           </h1>
           </div>
           <div className={s.boxtwo}>
 
-          <img
-            src={
-              videogames.createdVideoGame
-                ? videogames.background_image
-                : videogames.image
-            }
-            className={s.imagen}
-            alt="pic"
-          />
+          <img className={s.imagen}src={expression.test(videogames.background_image)?videogames.background_image:img}alt= "holis" height="200" width="250px" />
           </div>
           
           <div className={s.boxThree}>
-            
+            <div className={s.extra}>
             Generos:
             <h3>
               {!videogames.createdVideoGame
                 ? videogames.genres.map((e) => " " + e.name + " ") + " "
                 : videogames.genres.map((e) => " " + e.name + " ")}
             </h3>
+            </div>
           </div>
-          <div>
+          <div className={s.extra}>
             Descripcion:{" "}
           <h2 className={s.boxFinal}>
             {!videogames.createdVideoGame
@@ -92,9 +88,15 @@ export default function Details(props) {
 </div>
         </div>
       ) : (
-        videogames.name
+        <div className={s.loading}>
+  <div className={s.item}></div>
+  <div className={s.item}></div>
+  <div className={s.item}></div>
+  <div className={s.item}></div>
+</div>
       )}
       </div>
+      
     </div>
   );
 }

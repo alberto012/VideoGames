@@ -26,13 +26,25 @@ export function getVideoGames() {
   };
 }
 
-export function getGenre() {
-  return async function (dispatch) {
-    const allGenres = await axios.get(`http://localhost:3001/genre`);
-    return dispatch({
-      type: "GET_GENRE",
-      payload: allGenres.data,
-    });
+// export function getGenre() {
+//   return async function (dispatch) {
+//     const allGenres = await axios.get(`http://localhost:3001/genre`);
+//     return dispatch({
+//       type: "GET_GENRE",
+//       payload: allGenres.data,
+//     });
+//   };
+// }
+export function getGenre(){
+  return function (dispatch) {
+     axios.get(`http://localhost:3001/genre`)
+     .then((allGenres)=>{
+      return dispatch({
+        type: "GET_GENRE",
+        payload: allGenres.data,
+      });
+     })
+    
   };
 }
 export function filterByGenre(payload) {
@@ -42,15 +54,6 @@ export function filterByGenre(payload) {
   };
 }
 
-// export function getRating() {
-//   return async function (dispatch) {
-//     const rating = await axios.get("http://localhost:3001/videogames");
-//     return dispatch({
-//       type: "GET_RATING",
-//       payload: rating.data,
-//     });
-//   };
-// }
 
 
 export function getCreated(payload) {
@@ -59,6 +62,7 @@ export function getCreated(payload) {
     payload,
   };
 }
+
 
 export function filterByRating(payload) {
   return {
@@ -77,9 +81,15 @@ export function getName(name) {
       return dispatch({
         type: "GET_NAME",
         payload: game.data, //
+        
       });
     } catch (error) {
-      return error;
+      return dispatch({
+        type: "GET_NAME",
+        payload: error.name, //
+        
+      });
+      
     }
   };
 }
@@ -104,6 +114,7 @@ export function cardDetails(id) {
       .catch((error) => console.log(error));
   };
 }
+
 export function reset(payload) {
   return {
     type: "RESET",

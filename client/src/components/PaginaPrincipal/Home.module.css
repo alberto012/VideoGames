@@ -1,16 +1,21 @@
 .homes{
-    background-image: url("https://acegif.com/wp-content/gif/confetti-23.gif");
+    /* background-image: url("https://pa1.narvii.com/6641/6cc9a7abf1c43476a93a1f60bc0653cd0d7109a7_hq.gif"); */
     color: white;
-    text-shadow: 11px 4px 10px grey;
+    text-shadow: 11px 4px 10px rgb(0, 0, 0);
     font-weight:lighter;
+    justify-content: center;
 }
 .home{
     font-size:100px;
-    color: white;
-    text-shadow: 11px 4px 10px grey;
+    color: rgb(255, 93, 93);
+    text-shadow: 11px 4px 10px rgb(0, 0, 0);
     font-weight:lighter;
     font-family:'Bangers', cursive
     
+}
+.paginado{
+    padding:5px;
+    justify-content:space-between;
 }
 .button{
     border-radius: 10px;
@@ -23,13 +28,20 @@
     border: .5px solid rgb(255, 255, 255);
     cursor: pointer;
     position: relative;
-    background-color: rgba(214, 231, 54, 0.521);
+    background-color: rgba(245, 245, 245, 0.521);
 
+}
+.barra{
+    display: flex;
+justify-content: space-around;
+width: 40%;
+margin:auto;
+padding: 10px;
 }
 .button:after {
     border-radius: 10px;
     content: "";
-    background-color: #e8ff83cc;
+    background-color: #ffffff75;
     width: 100%;
     z-index: -1;
     position: absolute;
@@ -40,7 +52,7 @@
   .filtros{
        font-size:20px;
     font-weight:lighter;
-    border-radius:5px;
-    font-family:'Bangers', cursive
-    
+    border-radius:10px;
+    font-family:'Bangers', cursive;
+    margin:5px;
   }

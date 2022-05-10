@@ -13,9 +13,9 @@
     display: flex;
     align-content: space-between;
     flex-wrap: wrap;
-    backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(100px);
-
+    /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px); */
+  background-color: rgba(255, 255, 255, 0.281);
 }
 .boxOne{
    width:100%;
@@ -27,18 +27,26 @@
     backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(100px);
 }
-.boxThree{
-    width:100%;
-    backdrop-filter: blur(10px);
+.extra{
+  /* background-color: rgba(255, 255, 255, 0.281); */
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(100px);
 }
+.boxThree{
+    width:100%;  
+   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(100px); 
+}
 .boxFinal{
-    display:flex;
-    justify-content: space-between;
+  display:flex;
+  justify-content: space-around;
+  margin: auto;
+ 
+  padding-top: 30px;
     width: 100%;
     font-size: 1.5em;
     font-weight:lighter;
-    font-size: 17px;
+    font-size: 20px;
     backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(100px);
 }
@@ -72,16 +80,20 @@
     backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(100px);
 }
-.caka{
+/* .caja{
+
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(100px);
-}
+  
+
+} */
 /* Page styling -- Not needed to replicate button visuals. */
 .primero{
   
-  background-image: url("https://images4.alphacoders.com/117/1177896.jpg");
-  padding-top: 10px ;
-  padding-bottom: 20px ;
+  background-image: url("https://images4.alphacoders.com/775/775059.jpg");
+ margin:0px;
+  
+  
   transition: 0.5s;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(100px);
@@ -130,4 +142,49 @@
   top: 7px;
   left: 7px;
 }
-/* End of Simple Button */
+
+.loading {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: auto;
+}
+.loading .item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid #fff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  animation: spin 2s ease infinite;
+}
+.loading.item:nth-child(1) {
+  width: 50px;
+  height: 50px;
+}
+.loading.item:nth-child(2) {
+  width: 70px;
+  height: 70px;
+  animation-delay: 0.1s;
+}
+.loading .item:nth-child(3) {
+  width: 90px;
+  height: 90px;
+  animation-delay: 0.2s;
+}
+.loading.item:nth-child(4) {
+  width: 110px;
+  height: 110px;
+  animation-delay: 0.3s;
+}
+@keyframes spin {
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+

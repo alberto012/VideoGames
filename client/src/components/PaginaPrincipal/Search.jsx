@@ -16,7 +16,8 @@ export default function Searchbar() {
     e.preventDefault();
     if (!search) {
       return alert("Colocar una busqueda");
-    } else {
+    }
+    else {
       dispatch(getName(search));
       setSearch("");
       document.getElementById.value = "";

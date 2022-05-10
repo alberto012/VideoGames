@@ -1,6 +1,8 @@
 .control{
     border-radius: 10px;
     font-family: 'Bangers', cursive;
+    padding: 2px 6px;
+    margin: 5px;
 }
 .boton{
     border-radius: 10px;
@@ -13,14 +15,14 @@
     border: .5px solid rgb(255, 247, 247);
     cursor: pointer;
     position: relative;
-    background-color: rgba(255, 244, 119, 0.774);
+    background-color: rgba(218, 218, 218, 0.534);
     
-    
+    margin: 5px;
 }
 .boton:after {
     border-radius: 10px;
     content: "";
-    background-color: #e8ff83cc;
+    background-color: #ff4d4dcc;
     width: 100%;
     z-index: -1;
     position: absolute;

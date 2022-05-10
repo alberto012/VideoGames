@@ -16,9 +16,9 @@ export default function Paginado({ gamePerPage, allGames, pagination }) {
         
         {pageNumber && 
         pageNumber.map(number => (
-           <button className={s.paginado} key={number}>
+           <button className={s.boton} key={number} onClick={() => pagination(number)}>
 
-             <a  onClick={() => pagination(number)}>{number}</a>
+             {number}
        
            </button>
           ))}
