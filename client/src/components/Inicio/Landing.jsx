@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import s from "./Landing.module.css";
 export default function Landing() {
   return (
@@ -31,9 +31,8 @@ export default function Landing() {
     <div className={s.container}>
 	<div className={s.content}>
 		<div className={s.globe}></div>
-		<h2 className={s.frame1}>Welcome</h2>
-		<h2 className={s.frame2}>to the </h2>
-		<h2 className={s.frame3}>GamesApp</h2>
+		<h2 className={s.frame1}>Welcome to the GamesApp</h2>
+	
 		
 		<h2 className={s.frame5}>
 			<span>Start Now</span>

@@ -59,6 +59,14 @@ export default function Create() {
     });
    
   };
+  const handleClikDeleteGenre = (event) => {
+    event.preventDefault();
+    setEstado({
+      ...estado,
+      genres: estado.genres.filter((d) => d.toLowerCase() !== event.target.value.toLowerCase())
+    });
+   
+  };
   function handleChange(e) {
     if(e.target.name==="rating"){
       setEstado({
@@ -216,8 +224,9 @@ export default function Create() {
         </select>
         </div>
         <div className={s.form}>
-        <label>Generos Seleccionados: </label>
-        <ul className={s.body}>{estado.genres.map((e) => e + " ,")}</ul>
+        Generos Seleccionados: 
+        {estado.genres.map((e) =><div key={e}><button className={s.btn} value={e} onClick={(event)=>handleClikDeleteGenre(event)} > X </button><li className={s.li}>{e}</li></div>)}
+    
         </div>
         <div className={s.form}>
           <label>Plataformas: </label>
@@ -234,7 +243,7 @@ export default function Create() {
         </div>
         <div className={s.form}>
         <ul className={s.body}>
-          Plataformas Seleccionadas: {estado.platforms.map((e) =><div key={e}><button value={e} onClick={(event)=>handleClikDelete(event)} > X </button><li>{e}</li></div> )}
+          Plataformas Seleccionadas: {estado.platforms.map((e) =><div key={e}><button className={s.btn} value={e} onClick={(event)=>handleClikDelete(event)} > X </button><li>{e}</li></div> )}
         </ul>
         </div >
         <div className={s.dis}>

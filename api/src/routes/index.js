@@ -234,7 +234,7 @@ router.post("/videogame", async (req, res) => {
 
 const allGenres = async () => {
   const ApiGenre = await axios.get(
-    `https://api.rawg.io/api/genres?key=${API_KEY}&number=100`
+    `https://api.rawg.io/api/genres?key=${API_KEY}`//CAMBIE EL &NUMBER=100
   );
   const info = ApiGenre.data.results;
   const filtro = info.map((e) => e.name);

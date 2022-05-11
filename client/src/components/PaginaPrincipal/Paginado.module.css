@@ -13,6 +13,9 @@
    margin-left: 5px;
 }
 .boton:active, .boton:focus{
-    background-color: red;
-    color:white;
+    background-color: rgba(94, 93, 93, 0.363);
+    color:rgb(255, 255, 255);
+    border: 1px solid #ffffff;
+    font-weight:lighter;
+    text-shadow: 11px 4px 10px rgb(0, 0, 0);
 }
